@@ -15,12 +15,14 @@ class SplitTopologyTest : FreeSpec({
                 resultat.first().value shouldBe "10"
             }
 
-            "Når vi sender inn 40 får vi ut 10" {
-                tallTopic.pipeInput("A", 40L)
+            "Når vi sender inn 80 får vi ut 40 og 10" {
+                tallTopic.pipeInput("A", 80L)
                 val resultat = resultatTopic.readKeyValuesToList()
-                resultat.size shouldBe 1
+                resultat.size shouldBe 2
                 resultat.first().key shouldBe "A"
-                resultat.first().value shouldBe "10"
+                resultat.first().value shouldBe "40"
+                resultat[1].key shouldBe "A"
+                resultat[1].value shouldBe "10"
             }
         }
     }

@@ -11,20 +11,18 @@ import org.apache.kafka.streams.processor.RecordContext
 import org.apache.kafka.streams.processor.TopicNameExtractor
 
 fun splitTopology(builder: StreamsBuilder = StreamsBuilder()): Topology {
-    builder
+    val stream = builder
         .stream(TALL_TOPIC, Consumed.with(Serdes.String(), Serdes.Long()))
         .mapValues { _, value -> if (value > 10L) value shr 1 else value }
-        .split()
-        .branch(
-            { _, value -> value > 10L },
-            Branched.withConsumer { it.to(TALL_TOPIC, Produced.with(Serdes.String(), Serdes.Long())) }
-        )
-        .branch(
-            { _, value -> value <= 10L },
-            Branched.withConsumer { it.mapValues { _, value -> value.toString() }.to(RESULTAT_TOPIC)}
-        ).noDefaultBranch()
 
+    stream
+        .filter { _, value -> value > 10L }
+        .to(TALL_TOPIC, Produced.with(Serdes.String(), Serdes.Long()))
 
+    stream
+        .filter { _, value -> value <= 10L || value == 40L}
+        .mapValues { _, value -> value.toString() }
+        .to(RESULTAT_TOPIC)
 
     return builder.build()
 }
