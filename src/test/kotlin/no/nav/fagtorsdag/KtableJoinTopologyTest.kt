@@ -1,8 +1,6 @@
 package no.nav.fagtorsdag
 
 import io.kotest.core.spec.style.FreeSpec
-import io.kotest.core.test.TestCaseSeverityLevel
-import io.kotest.core.test.TestCaseSeverityLevel.TRIVIAL
 import io.kotest.matchers.shouldBe
 import java.time.Instant
 
