@@ -1,9 +1,13 @@
-package no.nav.fagtorsdag
+package no.nav.fagtorsdag.utils
 
+import no.nav.fagtorsdag.RESULTAT_TOPIC
+import no.nav.fagtorsdag.TALL_TOPIC
+import no.nav.fagtorsdag.TEKST_TOPIC
 import org.apache.kafka.common.serialization.Serdes
 import org.apache.kafka.streams.StreamsConfig
 import org.apache.kafka.streams.Topology
 import org.apache.kafka.streams.TopologyTestDriver
+import java.time.Duration
 import java.time.Instant
 import java.util.*
 
@@ -37,3 +41,5 @@ class TestContext(
         Serdes.String().deserializer()
     )
 }
+
+val Int.sekunder: Duration get() = Duration.ofSeconds(this.toLong())

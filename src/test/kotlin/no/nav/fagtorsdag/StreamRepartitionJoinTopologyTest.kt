@@ -2,13 +2,7 @@ package no.nav.fagtorsdag
 
 import io.kotest.core.spec.style.FreeSpec
 import io.kotest.matchers.shouldBe
-import org.apache.kafka.common.serialization.Serdes
-import org.apache.kafka.streams.StreamsBuilder
-import org.apache.kafka.streams.StreamsConfig
-import org.apache.kafka.streams.TopologyTestDriver
-import java.time.Duration
-import java.time.Instant
-import java.util.*
+import no.nav.fagtorsdag.utils.TestContext
 
 class StreamRepartitionJoinTopologyTest: FreeSpec({
     with(TestContext(streamRepartitionJoinTopology())) {

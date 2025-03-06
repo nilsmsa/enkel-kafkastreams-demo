@@ -2,6 +2,7 @@ package no.nav.fagtorsdag
 
 import io.kotest.core.spec.style.FreeSpec
 import io.kotest.matchers.shouldBe
+import no.nav.fagtorsdag.utils.TestContext
 import org.apache.kafka.common.serialization.Serdes
 import org.apache.kafka.common.utils.Time
 import org.apache.kafka.streams.StreamsBuilder

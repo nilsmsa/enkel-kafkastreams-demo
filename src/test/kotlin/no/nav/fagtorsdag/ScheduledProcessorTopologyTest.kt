@@ -2,6 +2,8 @@ package no.nav.fagtorsdag
 
 import io.kotest.core.spec.style.FreeSpec
 import io.kotest.matchers.shouldBe
+import no.nav.fagtorsdag.utils.TestContext
+import no.nav.fagtorsdag.utils.sekunder
 import org.apache.kafka.common.serialization.Serdes
 import org.apache.kafka.common.utils.Time
 import org.apache.kafka.streams.StreamsBuilder
@@ -23,7 +25,8 @@ class ScheduledProcessorTopologyTest : FreeSpec({
         )
     )
     val startTid = Instant.parse("2018-03-12T12:19:02.00Z")
-    with(TestContext(
+    with(
+        TestContext(
         initialWallclock = startTid,
         topology = scheduledProcessorToplogy(builder, storeName, PunctuationType.STREAM_TIME))
     ) {
@@ -53,7 +56,8 @@ class ScheduledProcessorTopologyTest : FreeSpec({
             Time.SYSTEM
         )
     )
-    with(TestContext(
+    with(
+        TestContext(
         initialWallclock = startTid,
         topology = scheduledProcessorToplogy(builder2, storeName2, PunctuationType.WALL_CLOCK_TIME))
     ) {
@@ -83,4 +87,3 @@ class ScheduledProcessorTopologyTest : FreeSpec({
     }
 })
 
-val Int.sekunder: Duration get() = Duration.ofSeconds(this.toLong())

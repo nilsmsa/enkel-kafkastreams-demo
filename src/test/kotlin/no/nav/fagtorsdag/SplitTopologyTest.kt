@@ -2,7 +2,7 @@ package no.nav.fagtorsdag
 
 import io.kotest.core.spec.style.FreeSpec
 import io.kotest.matchers.shouldBe
-import java.time.Instant
+import no.nav.fagtorsdag.utils.TestContext
 
 class SplitTopologyTest : FreeSpec({
     with(TestContext(splitTopology())) {

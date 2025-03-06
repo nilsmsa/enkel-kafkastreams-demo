@@ -1,4 +1,4 @@
-package no.nav.fagtorsdag
+package no.nav.fagtorsdag.utils
 
 import org.apache.kafka.streams.kstream.KStream
 import org.apache.kafka.streams.kstream.Named
